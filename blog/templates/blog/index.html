@@ -1,0 +1,15 @@
+{# loads the css #}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+
+{# this was passed by the blog/views.py index function context parameter #}
+{% if latest_posts %}
+    <ul>
+    {% for post in latest_posts %}
+        {#         references the url name defined in the blog/urls.py #}
+        <li><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}

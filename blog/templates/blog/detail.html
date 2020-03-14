@@ -1,0 +1,24 @@
+<h2>{{post.title}}</h2>
+by <i>{{post.author}}</i><br>
+{{post.publishing}}
+<p>{{post.text}}</p>
+
+{% comment %}
+{% url 'blog:comment' post.id %} references the url name defined in the blog/urls.py
+note: we can use hardcoded urls like "blog/{{post.id}}" but using the previous notation
+is much easier to manage since if we change the urls.py it will reflect here
+{% endcomment %}
+<form action="{% url 'blog:comment' post.id %}" method="post">
+    {% csrf_token %}
+    <label for="author">Your email:</label><br>
+    <input type="email" name="author" id="author"><br>
+    <label for="comment">Your comment:</label><br>
+    <textarea name="comment" id="comment" rows="10" cols="50">
+    </textarea><br>
+    <input type="submit" value="comment">
+</form>
+
+<h3>Last comments</h3>
+{% for comment in comments %}
+<p>{{comment.comment}}<i> [{{comment.author}}]</i></p>
+{% endfor %}
