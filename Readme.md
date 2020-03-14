@@ -1,4 +1,4 @@
-###Learning Django
+# Learning Django
 this is a simple project using Django
 see: https://docs.djangoproject.com/en/3.0/intro/tutorial01/
 
